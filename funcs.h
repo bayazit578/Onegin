@@ -6,7 +6,7 @@
 #include <stdlib.h>
 
 int CPABHEHUE_CTPOK(const char* str1, const char* str2);                    //strcmp()
-int CPABHEHUE_CTPOK_back(const char* str1, const char* str2);            //reverse strcmp()
+int CPABHEHUE_CTPOK_back(const char* str1, const char* str2);              //reverse strcmp()
 void KOnUPOBAHUE_CTPOKU(const char* str1, char* str2);                    //strcpy()
 void COEDUHEHUE_CTPOK (char* str1, const char* str2);                    //strcat()
 char* nOUCK_CUMBOVA_B_CTPOKE(const char* str1, char symbol);            //strchr()

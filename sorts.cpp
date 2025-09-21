@@ -6,8 +6,42 @@
 
 #include "funcs.h"
 #include "supportive.h"
+#include "fileworks.h"
+#include "comparator.h"
 
 // int (*a)(const void*, const void*)
+void Run_Sorts(char** ptr, int count) {
+    int cond = 0;
+    BUBBLEGUM_straight(ptr, count);
+    cond = 0;
+    ADD_to_File((const char* const*)ptr, count, cond);
+    // printf("\nPrint of ptr massive:\n");
+    // for (int i = 0; i < count; i++)
+    //     printf("%p : %s\n", onegin_ptr[i], onegin_ptr[i]);
+
+    BUBBLEGUM_back(ptr, count);
+    cond = 1;
+    ADD_to_File((const char* const*)ptr, count, cond);
+    // printf("\nPrint of ptr massive:\n");
+    // for (int i = 0; i < count; i++)
+    //     printf("%p : %s\n", onegin_ptr[i], onegin_ptr[i]);
+
+    qsort(ptr, count, sizeof(char*), CompareStr);
+    cond = 2;
+    ADD_to_File((const char* const*)ptr, count, cond);
+    // printf("\nPrint of ptr massive:\n");
+    // for (int i = 0; i < count; i++)
+    //     printf("%p : %s\n", onegin_ptr[i], onegin_ptr[i]);
+
+    qsort(ptr, count, sizeof(char*), CompareStr_back);
+    cond = 3;
+    ADD_to_File((const char* const*)ptr, count, cond);
+    // printf("\nPrint of ptr massive:\n");
+    // for (int i = 0; i < count; i++)
+    //     printf("%p : %s\n", onegin_ptr[i], onegin_ptr[i]);
+
+
+}
 
 void BUBBLEGUM_straight(char** onegin, int count) {//указатель на функцию
 

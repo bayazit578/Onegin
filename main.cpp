@@ -11,25 +11,26 @@
 #include "sorts.h"
 #include "comparator.h"
 #include "fileworks.h"
-#include "create_of_ptr.h"
+#include "create_structs.h"
+#include "struct.h"
 
-#define in_fi "EngEvgeniyOnegin.txt"
-#define out_fi "sigma_poem.txt"
+const char* in_fi = "EngEvgeniyOnegin.txt";
+const char* out_fi = "sigma_poem.txt";
 
 int main() {
     int onegin_descr = open(in_fi, O_RDONLY);
-    if (onegin_descr == -1) {
-        printf("Error %d: %s\n", errno, strerror(errno));
-        switch(errno) {
-            case ENOENT: fprintf(stderr, "File doesn't exist\n");
-                         break;
-            case EACCES: fprintf(stderr, "No acces rights\n");
-                         break;
-            case EMFILE: fprintf(stderr, "Too many open files\n");
-                         break;
-            default: fprintf(stderr, "Unknown error\n");
-        }
-    }
+    // if (onegin_descr == -1) {
+    //     printf("Error %d: %s\n", errno, strerror(errno));
+    //     switch(errno) {
+    //         case ENOENT: fprintf(stderr, "File doesn't exist\n");
+    //                      break;
+    //         case EACCES: fprintf(stderr, "No acces rights\n");
+    //                      break;
+    //         case EMFILE: fprintf(stderr, "Too many open files\n");
+    //                      break;
+    //         default: fprintf(stderr, "Unknown error\n");
+    //     }
+    // }
 
     char* onegin_bufff = {};
     Read_File(onegin_descr, &onegin_bufff);
@@ -39,19 +40,21 @@ int main() {
 
     close(onegin_descr);
 
-    int count = 0;
-    char** onegin_ptr = Split_Lines(onegin_bufff, &count);
-    // printf("\nPrint of ptr massive:\n");
+    size_t count = 0;
+    struct string* str = {};
+    Split_Lines(&str, onegin_bufff, &count);
+    // printf("\nPrint of struckture massive:\n");
     // for (int i = 0; i < count; i++)
     //     printf("%p : %s\n", *onegin_ptr[i], onegin_ptr[i]);
 
     //printf("count2: %d\n", count);
     FILE* clear_file = fopen(out_fi, "w");
     fclose(clear_file);
+    FILE* onega_out = fopen(out_fi, "a");
 
-    Run_Sorts(onegin_ptr, count);
+    Run_Sorts(str, count, onega_out);
 
     free(onegin_bufff);
-    free(onegin_ptr);
+    free(str);
 }
 

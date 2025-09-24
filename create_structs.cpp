@@ -1,18 +1,19 @@
-#include "create_of_ptr.h"
+#include "create_structs.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <assert.h>
 
-int Count_Lines(char* bufff) {
+#include "struct.h"
+
+int Cut_n_Count_Buffer(char* bufff) {
     char* trolley = bufff;
     char* marker = 0;
     int count = 0;
     while ((trolley - 1) != NULL) {
         //printf("sex\n");
         marker = strchr(trolley, '\n');
-        if(marker != 0)
-            *marker = '\0';
         trolley = marker + 1;
         //printf("Strchr pointer: %p\n", trolley);
         count++;
@@ -21,19 +22,22 @@ int Count_Lines(char* bufff) {
     return count;
 }
 
-char** Split_Lines(char* bufff, int* count) {
-    *count = Count_Lines(bufff);
+void Split_Lines(string** str, char* bufff, size_t* count) {
     //printf("count1: %d\n", count);
-    char** bufff_ptr = (char**)calloc(*count, sizeof(char*));
-    bufff_ptr[0] = bufff;
+    *count = Cut_n_Count_Buffer(bufff);
+    *str = (string*)calloc(*count, sizeof(string));
+    assert(*str != NULL);
+
+    (*str)[0].line = bufff;
     char* trolley = bufff;
     char* marker = 0;
     for (int i = 1; (i < *count) && ((trolley - 1) != NULL); i++) {
-        marker = strchr(trolley, '\0');
+        marker = strchr(trolley, '\n');
+        int size = marker - trolley;
         trolley = marker + 1;
-        if (marker != NULL) {
-            bufff_ptr[i] = trolley;
+        if (trolley != NULL) {
+            (*str)[i].line = trolley;
+            (*str)[i].length = size;
         }
     }
-    return bufff_ptr;
 }

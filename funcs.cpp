@@ -53,7 +53,7 @@ void KOnUPOBAHUE_CTPOKU(const char* str1, char* str2) {
         str2[step + i] = '\0';
 }
 
-void COEDUHEHUE_CTPOK (char* str1, const char* str2) {
+void COEDUHEHUE_CTPOK(char* str1, const char* str2) {
     int step = 0;
     while (str1[step] != '\0') {
         step++;
@@ -70,14 +70,14 @@ char* nOUCK_CUMBOVA_B_CTPOKE(const char* str1, char symbol) {
     return (char*)str1;
 }
 
-int DVUHA_CTPOKU (const char* str) {
+int DVUHA_CTPOKU(const char* str) {
     int length = 0;
     while (*(str++) != '\0')
         length++;
     return length;
 }
 
-char* DY6VUKAT_CTPOKU (const char* str) {
+char* DY6VUKAT_CTPOKU(const char* str) {
     int size = (int)strlen(str);
     printf("%d\n", size);
     char* dub_str = (char*)calloc(size, sizeof(char));
@@ -104,7 +104,7 @@ char* nOUCK_CTPOKU_B_CTPOKE(const char* str, const char* target_str) {
     return NULL;
 }
 
-int CTPOKY_B_INT (char* str) {
+int CTPOKY_B_INT(char* str) {
     int size = (int)strlen(str);
     int number = 0;
     for (int step = 0; step < size; step++) {
@@ -115,7 +115,7 @@ int CTPOKY_B_INT (char* str) {
     return number;
 }
 
-int GetLine (char** str, size_t* size, FILE* stream) {
+int GetLine(char** str, size_t* size, FILE* stream) {
 //геом прогрессия, без fseek
     if (*str == NULL) {
         *size = 1;
@@ -142,7 +142,7 @@ int GetLine (char** str, size_t* size, FILE* stream) {
     return counter;
 }
 
-char* Fgets (char* str, size_t size, FILE* stream) {
+char* Fgets(char* str, size_t size, FILE* stream) {
     if (size == 0)
         return NULL;
 

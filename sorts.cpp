@@ -8,34 +8,35 @@
 #include "supportive.h"
 #include "fileworks.h"
 #include "comparator.h"
+#include "struct.h"
 
 // int (*a)(const void*, const void*)
-void Run_Sorts(char** ptr, int count) {
-    int cond = 0;
-    BUBBLEGUM_straight(ptr, count);
-    cond = 0;
-    ADD_to_File((const char* const*)ptr, count, cond);
+void Run_Sorts(string* str, size_t count, FILE* out_file) {
+    char* title = {};
+    BUBBLEGUM_straight(str, count);
+    title = "ENCYCLOPEDIA OF RUSSIAN LIFE:";
+    Add_to_File(str, title, count, out_file);
     // printf("\nPrint of ptr massive:\n");
     // for (int i = 0; i < count; i++)
     //     printf("%p : %s\n", onegin_ptr[i], onegin_ptr[i]);
 
-    BUBBLEGUM_back(ptr, count);
-    cond = 1;
-    ADD_to_File((const char* const*)ptr, count, cond);
+    BUBBLEGUM_back(str, count);
+    title = "ENCYCLOPEDIA OF RUSSIAN RHYMES:";
+    Add_to_File(str, title, count, out_file);
     // printf("\nPrint of ptr massive:\n");
     // for (int i = 0; i < count; i++)
     //     printf("%p : %s\n", onegin_ptr[i], onegin_ptr[i]);
 
-    qsort(ptr, count, sizeof(char*), CompareStr);
-    cond = 2;
-    ADD_to_File((const char* const*)ptr, count, cond);
+    qsort(str, sizeof(str)/sizeof(str[0]), sizeof(string), CompareStr);
+    title = "ENCYCLOPEDIA OF RUSSIAN LIFE QSORT:";
+    Add_to_File(str, title, count, out_file);
     // printf("\nPrint of ptr massive:\n");
     // for (int i = 0; i < count; i++)
     //     printf("%p : %s\n", onegin_ptr[i], onegin_ptr[i]);
 
-    qsort(ptr, count, sizeof(char*), CompareStr_back);
-    cond = 3;
-    ADD_to_File((const char* const*)ptr, count, cond);
+    qsort(str, sizeof(str)/sizeof(str[0]), sizeof(string), CompareStr_back);
+    title = "ENCYCLOPEDIA OF RUSSIAN RHYMES QSORT:";
+    Add_to_File(str, title, count, out_file);
     // printf("\nPrint of ptr massive:\n");
     // for (int i = 0; i < count; i++)
     //     printf("%p : %s\n", onegin_ptr[i], onegin_ptr[i]);
@@ -43,28 +44,27 @@ void Run_Sorts(char** ptr, int count) {
 
 }
 
-void BUBBLEGUM_straight(char** onegin, int count) {//указатель на функцию
-
+void BUBBLEGUM_straight(string* str, size_t count) {//указатель на функцию
     for (int i = 0; i < count - 1; i++) {
         for (int j = 0; j < count - i - 1; j++) {
-            if(CPABHEHUE_CTPOK(&onegin[j][Alpha_index(onegin[j])],
-                               &onegin[j + 1][Alpha_index(onegin[j + 1])]) > 0) {
-                char* elem = onegin[j];
-                onegin[j] = onegin[j + 1];
-                onegin[j + 1] = elem;
+            if(CPABHEHUE_CTPOK(str[j].line + Alpha_index(str[j].line),
+                               str[j + 1].line + Alpha_index(str[j + 1].line)) > 0) {
+                string elem = str[j];
+                str[j] = str[j + 1];
+                str[j + 1] = elem;
             }
         }
     }
 }
 
-void BUBBLEGUM_back(char** onegin, int count) {
+void BUBBLEGUM_back(string* str, size_t count) {
     for (int i = 0; i < count - 1; i++) {
         for (int j = 0; j < count - i - 1; j++) {
-            if(CPABHEHUE_CTPOK_back(&onegin[j][Back_Alpha_index(onegin[j])],
-                                    &onegin[j + 1][Back_Alpha_index(onegin[j + 1])]) > 0) {
-                char* elem = onegin[j];
-                onegin[j] = onegin[j + 1];
-                onegin[j + 1] = elem;
+            if(CPABHEHUE_CTPOK_back(str[j].line + Back_Alpha_index(str[j].line),
+                                    str[j + 1].line + Back_Alpha_index(str[j + 1].line)) > 0) {
+                string elem = str[j];
+                str[j] = str[j + 1];
+                str[j + 1] = elem;
             }
         }
     }

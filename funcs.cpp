@@ -4,12 +4,22 @@
 #include <string.h>
 #include <stdlib.h>
 
-int CPABHEHUE_CTPOK(const char* str1, const char* str2) {
+#include "struct.h"
+#include "supportive.h"
+
+static bool if_null(char x) {
+    return x == '\n' || x == '\0';
+}
+
+int CPABHEHUE_CTPOK(string str1, string str2) {
     int result = 0;
-    for (int step = 0; str1[step] != '\0'; step++) {
-        if (str1[step] == str2[step])
+    int len1 = Alpha_index(str1.line);
+    int len2 = Alpha_index(str2.line);
+    for (int step = 0; !(if_null(str1.line[len1 + step]) ||
+                       if_null(str2.line[len2 + step])); step++) {
+        if (str1.line[len1 + step] == str2.line[len2 + step])
             continue;
-        else if (str1[step] > str2[step]) {
+        else if (str1.line[len1 + step] > str2.line[len2 + step]) {
             result = 1;
             break;
         }
@@ -22,14 +32,15 @@ int CPABHEHUE_CTPOK(const char* str1, const char* str2) {
     return result;
 }
 
-int CPABHEHUE_CTPOK_back(const char* str1, const char* str2) {
+int CPABHEHUE_CTPOK_back(string str1, string str2) {
     int result = 0;
-    int len1 = (int)strlen(str1);
-    int len2 = (int)strlen(str2);
-    for (int step = 0; str1[step] != '\0'; step++) {
-        if (str1[len1 - step - 1] == str2[len2 - step - 1])
+    int len1 = Back_Alpha_index(str1.line);
+    int len2 = Back_Alpha_index(str2.line);
+    for (int step = 0; !(if_null(str1.line[len1 - step]) ||
+                       if_null(str2.line[len2 - step])); step++) {
+        if (str1.line[len1 - step] == str2.line[len2 - step])
             continue;
-        else if (str1[len1 - step - 1] > str2[len2 - step - 1]) {
+        else if (str1.line[len1 - step] > str2.line[len2 - step]) {
             result = 1;
             break;
         }
@@ -116,7 +127,6 @@ int CTPOKY_B_INT(char* str) {
 }
 
 int GetLine(char** str, size_t* size, FILE* stream) {
-//геом прогрессия, без fseek
     if (*str == NULL) {
         *size = 1;
         *str = (char*)calloc(*size, sizeof(char));
@@ -161,4 +171,42 @@ char* Fgets(char* str, size_t size, FILE* stream) {
         }
     }
     return NULL;
+}
+
+int My_Strcmp(const char* str1, const char* str2) {
+    int result = 0;
+    for (int step = 0; str1[step] != '\0'; step++) {
+        if (str1[step] == str2[step])
+            continue;
+        else if (str1[step] > str2[step]) {
+            result = 1;
+            break;
+        }
+        else {
+            result = -1;
+            break;
+        result = 0;
+        }
+    }
+    return result;
+}
+
+int My_Strcmp_back(const char* str1, const char* str2) {
+    int result = 0;
+    int len1 = (int)strlen(str1);
+    int len2 = (int)strlen(str2);
+    for (int step = 0; str1[step] != '\0'; step++) {
+        if (str1[len1 - step - 1] == str2[len2 - step - 1])
+            continue;
+        else if (str1[len1 - step - 1] > str2[len2 - step - 1]) {
+            result = 1;
+            break;
+        }
+        else {
+            result = -1;
+            break;
+        result = 0;
+        }
+    }
+    return result;
 }

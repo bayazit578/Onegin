@@ -10,6 +10,10 @@ CFLAGS= -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ -Waggressive-loop
 -Wlarger-than=8192 -Wstack-usage=8192 -pie -fPIE -Werror=vla\
 -fsanitize=address,alignment,bool,bounds,enum,float-cast-overflow,float-divide-by-zero,integer-divide-by-zero,leak,nonnull-attribute,null,object-size,return,returns-nonnull-attribute,shift,signed-integer-overflow,undefined,unreachable,vla-bound,vptr
 
+.PHONY: all program run
+
+all: program run
+
 program : main.o comparator.o create_structs.o fileworks.o funcs.o sorts.o supportive.o
 	@g++ ${CFLAGS} main.o comparator.o create_structs.o fileworks.o funcs.o sorts.o supportive.o -o program
 

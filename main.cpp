@@ -14,7 +14,7 @@
 #include "create_structs.h"
 #include "struct.h"
 
-const char* in_fi = "EngEvgeniyOnegin.txt";
+const char* in_fi = "file.txt";
 const char* out_fi = "sigma_poem.txt";
 
 int main() {
@@ -54,6 +54,7 @@ int main() {
 
     Run_Sorts(str, count, onega_out);
 
+    fclose(onega_out);
     free(onegin_bufff);
     free(str);
 }

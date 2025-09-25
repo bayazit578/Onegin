@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
+#include <string.h>
 
 int Read_File(int input_descr, char** bufff) {
     struct stat input_info;
@@ -10,8 +11,7 @@ int Read_File(int input_descr, char** bufff) {
     //printf("%d\n", input_info.st_size);
     //printf("Describtor2: %d\n", input_descr);
 
-    FILE* input_stream = fdopen(input_descr, "r");
-
+    FILE* input_stream = fdopen(input_descr, "rb");
     *bufff = (char*)calloc(input_info.st_size + 1, sizeof(char));//struct
     //printf("Buffer ptr: %p", onegin_bufff);
 
@@ -23,15 +23,13 @@ int Read_File(int input_descr, char** bufff) {
 }
 
 void Add_to_File(string* str, char* title, size_t count, FILE* out_file) {
-
     // printf("\nPrint of ptr massive:\n");
     // for (int i = 0; i < count; i++)
     //     printf("%p : %s\n", onegin[i], onegin[i]);
     fprintf(out_file, "\n%s\n", title);
 
     for (int i = 0; i < count; i++) {
-        fprintf(out_file, "%s\n", str[i]);
+        fwrite(str[i].line, sizeof(char), str[i].length, out_file);
         //printf("fprintf str: %s\n", onegin[i]);
     }
-    fclose(out_file);
 }

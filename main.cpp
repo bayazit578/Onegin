@@ -6,6 +6,7 @@
 #include <ctype.h>
 #include <unistd.h>
 #include <errno.h>
+#include <assert.h>
 
 #include "funcs.h"
 #include "sorts.h"
@@ -54,7 +55,9 @@ int main() {
 
     Run_Sorts(str, count, onega_out);
 
-    fclose(onega_out);
+    int res = fclose(onega_out);
+    assert(res == 0);
+
     free(onegin_bufff);
     free(str);
 }

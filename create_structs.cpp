@@ -9,6 +9,7 @@
 #include "struct.h"
 
 int Cut_n_Count_Buffer(char* bufff) {
+    assert(bufff != NULL);
     char* trolley = bufff;
     char* marker = 0;
     int count = 0;
@@ -27,6 +28,10 @@ int Cut_n_Count_Buffer(char* bufff) {
 }
 
 void Split_Lines(string** str, char* bufff, size_t* count) {
+    assert(str);
+    assert(bufff);
+    assert(count);
+
     //printf("count1: %d\n", count);
     *count = Cut_n_Count_Buffer(bufff);
     *str = (string*)calloc(*count, sizeof(string));

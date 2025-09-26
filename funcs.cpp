@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <assert.h>
 
 #include "struct.h"
 #include "supportive.h"
@@ -16,7 +17,7 @@ int CPABHEHUE_CTPOK(string str1, string str2) {
     int len1 = Alpha_index(str1.line);
     int len2 = Alpha_index(str2.line);
     for (int step = 0; !(if_null(str1.line[len1 + step]) ||
-                       if_null(str2.line[len2 + step])); step++) {
+                         if_null(str2.line[len2 + step])); step++) {
         if (str1.line[len1 + step] == str2.line[len2 + step])
             continue;
         else if (str1.line[len1 + step] > str2.line[len2 + step]) {
@@ -92,6 +93,8 @@ char* DY6VUKAT_CTPOKU(const char* str) {
     int size = (int)strlen(str);
     printf("%d\n", size);
     char* dub_str = (char*)calloc(size, sizeof(char));
+    assert(dub_str != NULL);
+
     int cycles = 0;
     while (str[cycles] != '\0') {
         dub_str[cycles] = str[cycles];
@@ -130,6 +133,7 @@ int GetLine(char** str, size_t* size, FILE* stream) {
     if (*str == NULL) {
         *size = 1;
         *str = (char*)calloc(*size, sizeof(char));
+        assert(*str != NULL);
     }
     int counter = 0;
     //printf("size ptr:%d ", size);

@@ -2,8 +2,10 @@
 
 #include <ctype.h>
 #include <string.h>
+#include <assert.h>
 
 int Alpha_index(const char* str) {
+    assert(str != NULL);
     if ((*str == '\n') || (*str == '\0'))
         return 0;
 
@@ -18,6 +20,7 @@ int Alpha_index(const char* str) {
 }
 
 int Back_Alpha_index(const char* str) {
+    assert(str != NULL);
     if ((*str == '\n') || (*str == '\0'))
         return 0;
 

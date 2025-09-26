@@ -37,7 +37,7 @@ void Split_Lines(string** str, char* bufff, size_t* count) {
     size_t size = 0;
     for (int i = 0; (i < *count) && (*trolley != '\0'); i++) {
         marker = strchr(trolley, '\n');
-        size = marker - trolley;
+        size = marker - trolley + 1;
         if (marker != NULL) {
             (*str)[i].line = trolley;
             (*str)[i].length = size;

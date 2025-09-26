@@ -13,14 +13,14 @@
 // int (*a)(const void*, const void*)
 void Run_Sorts(string* str, size_t count, FILE* out_file) {
     char* title = {};
-    BUBBLEGUM_straight(str, count);
+    BUBBLEGUM(str, count, CompareStr);
     title = "\nENCYCLOPEDIA OF RUSSIAN LIFE:\n";
     Add_to_File(str, title, count, out_file);
     // printf("\nPrint of ptr massive:\n");
     // for (int i = 0; i < count; i++)
     //     printf("%p : %s\n", onegin_ptr[i], onegin_ptr[i]);
 
-    BUBBLEGUM_back(str, count);
+    BUBBLEGUM(str, count, CompareStr_back);
     title = "\nENCYCLOPEDIA OF RUSSIAN RHYMES:\n";
     Add_to_File(str, title, count, out_file);
     // printf("\nPrint of ptr massive:\n");
@@ -43,10 +43,10 @@ void Run_Sorts(string* str, size_t count, FILE* out_file) {
 
 }
 
-void BUBBLEGUM_straight(string* str, size_t count) {//указатель на функцию
+void BUBBLEGUM(string* str, size_t count, Comparator Compare) {//указатель на функцию
     for (int i = 0; i < count - 1; i++) {
         for (int j = 0; j < count - i - 1; j++) {
-            if(CPABHEHUE_CTPOK(str[j], str[j + 1]) > 0) {
+            if(CompareStr(&str[j], &str[j + 1]) > 0) {
                 string elem = str[j];
                 str[j] = str[j + 1];
                 str[j + 1] = elem;
@@ -55,14 +55,14 @@ void BUBBLEGUM_straight(string* str, size_t count) {//указатель на функцию
     }
 }
 
-void BUBBLEGUM_back(string* str, size_t count) {
-    for (int i = 0; i < count - 1; i++) {
-        for (int j = 0; j < count - i - 1; j++) {
-            if(CPABHEHUE_CTPOK_back(str[j], str[j + 1]) > 0) {
-                string elem = str[j];
-                str[j] = str[j + 1];
-                str[j + 1] = elem;
-            }
-        }
-    }
-}
+// void BUBBLEGUM_back(string* str, size_t count) {
+//     for (int i = 0; i < count - 1; i++) {
+//         for (int j = 0; j < count - i - 1; j++) {
+//             if(CompareStr_back(&str[j], &str[j + 1]) > 0) {
+//                 string elem = str[j];
+//                 str[j] = str[j + 1];
+//                 str[j + 1] = elem;
+//             }
+//         }
+//     }
+// }

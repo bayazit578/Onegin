@@ -15,7 +15,7 @@
 #include "create_structs.h"
 #include "struct.h"
 
-const char* in_fi = "EngEvgeniyOnegin.txt";
+const char* in_fi = "file.txt";
 const char* out_fi = "sigma_poem.txt";
 
 int main() {
@@ -33,8 +33,8 @@ int main() {
     //     }
     // }
 
-    char* onegin_bufff = {};
-    Read_File(onegin_descr, &onegin_bufff);
+    char* onegin_bufff = NULL;
+    size_t bytes_read = Read_File(onegin_descr, &onegin_bufff);
     // printf("\nBuffer contents:\n");
     // for (int i = 0; i < onegin_info.st_size; i++)
     //     putchar(onegin_bufff[i]);
@@ -53,12 +53,13 @@ int main() {
     fclose(clear_file);
     FILE* onega_out = fopen(out_fi, "a");
 
-    Run_Sorts(str, count, onega_out);
+    Run_Sorts(str, count, onega_out, onegin_bufff, bytes_read);
 
     int res = fclose(onega_out);
     assert(res == 0);
 
     free(onegin_bufff);
     free(str);
+    return 0;
 }
 

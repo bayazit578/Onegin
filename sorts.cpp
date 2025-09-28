@@ -11,8 +11,9 @@
 #include "struct.h"
 
 // int (*a)(const void*, const void*)
-void Run_Sorts(string* str, size_t count, FILE* out_file) {
+void Run_Sorts(string* str, size_t count, FILE* out_file, char* bufff, size_t bytes_read) {
     char* title = {};
+
     BUBBLEGUM(str, count, CompareStr);
     title = "\nENCYCLOPEDIA OF RUSSIAN LIFE:\n";
     Add_to_File(str, title, count, out_file);
@@ -41,12 +42,14 @@ void Run_Sorts(string* str, size_t count, FILE* out_file) {
     // for (int i = 0; i < count; i++)
     //     printf("%p : %s\n", onegin_ptr[i], onegin_ptr[i]);
 
+    fputs("\nORIGINAL TEXT:\n\n", out_file);
+    fwrite(bufff, sizeof(char), bytes_read, out_file);
 }
 
-void BUBBLEGUM(string* str, size_t count, Comparator Compare) {//указатель на функцию
+void BUBBLEGUM(string* str, size_t count, Comparator Compare) {
     for (int i = 0; i < count - 1; i++) {
         for (int j = 0; j < count - i - 1; j++) {
-            if(CompareStr(&str[j], &str[j + 1]) > 0) {
+            if(Compare(&str[j], &str[j + 1]) > 0) {
                 string elem = str[j];
                 str[j] = str[j + 1];
                 str[j + 1] = elem;
@@ -54,15 +57,3 @@ void BUBBLEGUM(string* str, size_t count, Comparator Compare) {//указатель на фу
         }
     }
 }
-
-// void BUBBLEGUM_back(string* str, size_t count) {
-//     for (int i = 0; i < count - 1; i++) {
-//         for (int j = 0; j < count - i - 1; j++) {
-//             if(CompareStr_back(&str[j], &str[j + 1]) > 0) {
-//                 string elem = str[j];
-//                 str[j] = str[j + 1];
-//                 str[j + 1] = elem;
-//             }
-//         }
-//     }
-// }

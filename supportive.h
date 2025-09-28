@@ -3,7 +3,10 @@
 
 #include <ctype.h>
 
-int Alpha_index(const char* str);
-int Back_Alpha_index(const char* str);
+#include "struct.h"
+
+int Alpha_index_structs(string str);
+int Back_Alpha_index_structs(string str);
+bool if_null(char x);
 
 #endif // SUPPORTIVE_H

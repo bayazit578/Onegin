@@ -28,14 +28,14 @@ void Run_Sorts(string* str, size_t count, FILE* out_file, char* bufff, size_t by
     // for (int i = 0; i < count; i++)
     //     printf("%p : %s\n", onegin_ptr[i], onegin_ptr[i]);
 
-    qsort(str, sizeof(str)/sizeof(str[0]), sizeof(string), CompareStr);
+    qsort(str, count, sizeof(string), CompareStr);
     title = "\nENCYCLOPEDIA OF RUSSIAN LIFE QSORT:\n";
     Add_to_File(str, title, count, out_file);
     // printf("\nPrint of ptr massive:\n");
     // for (int i = 0; i < count; i++)
     //     printf("%p : %s\n", onegin_ptr[i], onegin_ptr[i]);
 
-    qsort(str, sizeof(str)/sizeof(str[0]), sizeof(string), CompareStr_back);
+    qsort(str, count, sizeof(string), CompareStr_back);
     title = "\nENCYCLOPEDIA OF RUSSIAN RHYMES QSORT:\n";
     Add_to_File(str, title, count, out_file);
     // printf("\nPrint of ptr massive:\n");
